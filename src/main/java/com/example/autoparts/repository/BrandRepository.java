@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
-    @Query(value = "SELECT b FROM Brand p WHERE b .name = ?1")
+    @Query(value = "SELECT b FROM Brand p WHERE b.name = ?1")
     Optional<Brand> findByName(String name);
-    void deleteByBrand(String brand);
 }

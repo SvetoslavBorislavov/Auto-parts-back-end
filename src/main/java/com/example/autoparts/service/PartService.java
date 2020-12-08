@@ -5,9 +5,15 @@ import com.example.AutoParts.model.Part;
 import java.util.Set;
 
 public interface PartService {
-    void save(Part part);
-    Part update (Part part);
-    Part findById(Long id);
     Set<Part> findAll();
+
+    Part findById(Long id);
+
+    Part findByName(String name);
+
+    Part save(Part part);
+
+    Part update(Part part);
+
     void deleteById(Long id);
 }

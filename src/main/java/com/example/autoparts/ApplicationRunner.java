@@ -14,11 +14,11 @@ public class ApplicationRunner implements CommandLineRunner {
 
     @Autowired
     private BrandRepository brandRepository;
-@Autowired
-private PartRepository partRepository;
+    @Autowired
+    private PartRepository partRepository;
 
     @Autowired
-    public ApplicationRunner(BrandRepository brandRepository, PartRepository partRepository){
+    public ApplicationRunner(BrandRepository brandRepository, PartRepository partRepository) {
         this.brandRepository = brandRepository;
         this.partRepository = partRepository;
     }
@@ -37,11 +37,11 @@ private PartRepository partRepository;
         partFirst.setPrice(150.00);
         partRepository.save(partFirst);
 
-       List<Brand> brands = brandRepository.findAll();
+        List<Brand> brands = brandRepository.findAll();
 
-       for(Brand brand : brands ) {
-           System.out.println(brand.toString());
-       }
+        for (Brand brand : brands) {
+            System.out.println(brand.toString());
+        }
 
     }
 }

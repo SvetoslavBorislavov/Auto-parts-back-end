@@ -1,19 +1,21 @@
 package com.example.AutoParts.service;
 
-import com.example.AutoParts.controller.exception.RecordNotFoundException;
+import com.example.AutoParts.exception.RecordNotFoundException;
 import com.example.AutoParts.model.Brand;
 import com.example.AutoParts.repository.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class BrandServiceimpl implements BrandService {
+@Service
+public class BrandServiceImpl implements BrandService {
 
     private BrandRepository brandRepository;
 
     @Autowired
-    public BrandServiceimpl(BrandRepository brandRepository) {
+    public BrandServiceImpl(BrandRepository brandRepository) {
         this.brandRepository = brandRepository;
     }
 
@@ -27,8 +29,9 @@ public class BrandServiceimpl implements BrandService {
         return brandRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Brand not found with id: " + id));
     }
 
+    @Override
     public Brand findByName(String name) {
-        return  brandRepository.findByName(name).orElseThrow(() -> new RecordNotFoundException("Brand with name: " + name + "does not exists"));
+        return brandRepository.findByName(name).orElseThrow(() -> new RecordNotFoundException("Brand with name: " + name + "does not exists"));
     }
 
     @Override
@@ -38,16 +41,11 @@ public class BrandServiceimpl implements BrandService {
 
     @Override
     public Brand update(Brand brand) {
-        return null;
+        return brandRepository.save(brand);
     }
 
     @Override
     public void deleteById(Long id) {
         brandRepository.deleteById(id);
-    }
-
-    @Override
-    public void deleteByBrand(String brand) {
-        brandRepository.deleteByBrand(brand);
     }
 }
